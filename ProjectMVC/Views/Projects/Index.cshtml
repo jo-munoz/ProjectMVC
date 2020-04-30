@@ -3,12 +3,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Projects</h2>
 
 @Html.ActionLink(" ","Create","Projects", null, new { @class = "btn btn-primary fas fa-plus-circle" })
 
 <table class="table table-bordered">
     <tr>
+        <td>Tasks</td>
         <td>@Html.DisplayNameFor(x => x.Title)</td>
         <td>@Html.DisplayNameFor(x => x.Details)</td>
         <td>@Html.DisplayNameFor(x => x.ExpectedCompletionDate)</td>
@@ -20,15 +21,16 @@
     @foreach (var item in Model)
     {
     <tr>
+        <td>@Html.ActionLink(" ", "Index", "Tasks", new { projectId = item.Id }, new { @class = "btn btn-primary fas fa-tasks" })</td>
         <td>@Html.DisplayFor(model => item.Title)</td>
         <td>@Html.DisplayFor(model => item.Details)</td>
         <td>@Html.DisplayFor(model => item.ExpectedCompletionDate)</td>
         <td>@Html.DisplayFor(model => item.CreatedAt)</td>
         <td>@Html.DisplayFor(model => item.UpdatedAt)</td>      
         <td>
-            @Html.ActionLink(" ", "Edit", "Projects", new { id = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-edit" })            
+            @Html.ActionLink(" ", "Edit", "Projects", new { id = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-edit" })
             @Html.ActionLink(" ", "Details", "Projects", new { id = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-info-circle" })
-            @Html.ActionLink(" ", "Delete", "Projects", new { id = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-trash" })
+            @Html.ActionLink(" ", "Delete", "Projects", new { id = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-trash" })            
         </td>
     </tr>
     }

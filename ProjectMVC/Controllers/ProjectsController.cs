@@ -70,7 +70,6 @@ namespace ProjectMVC.Controllers
         [ActionName("Create")]
         public ActionResult ProjectsCreate()
         {
-
             return View();
         }
 
