@@ -1,0 +1,39 @@
+﻿@model ProjectMVC.Logica.Models.BindingModels.ProjectsEditBindingModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Project</h2>
+
+<form action="/Projects/Edit" method="post">
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-row mb-2">
+        <div class="col-md-12">
+            @Html.LabelFor(x => x.Title)
+            @Html.EditorFor(x => x.Title, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+            @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-row mb-2">
+        <div class="col-md-12">
+            @Html.LabelFor(x => x.Details)
+            @Html.EditorFor(x => x.Details, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+            @Html.ValidationMessageFor(x => x.Details, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-row mb-2">
+        <div class="col-md-12">
+            @Html.LabelFor(x => x.ExpectedCompletionDate)
+            @Html.EditorFor(x => x.ExpectedCompletionDate, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+            @Html.ValidationMessageFor(x => x.ExpectedCompletionDate, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-12">
+            <br />            
+            <button type="submit" value="" class="btn-primary"><i class="fas fa-save"></i></button>
+            @Html.ActionLink(" ", "Index", "Projects", null, new { @class = "btn btn-danger fas fa-undo-alt" })
+        </div>
+    </div>
+
+</form>

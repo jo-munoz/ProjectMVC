@@ -1,0 +1,32 @@
+﻿@model ProjectMVC.Logica.Models.ViewModels.ProjectsDetailsViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details Project</h2>
+
+<table class="table table-bordered table-info">
+    <tr>
+        <td>@Html.DisplayNameFor(x => x.Title)</td>
+        <td>@Html.DisplayNameFor(x => x.Details)</td>
+        <td>@Html.DisplayNameFor(x => x.ExpectedCompletionDate)</td>
+        <td>@Html.DisplayNameFor(x => x.CreatedAt)</td>
+        <td>@Html.DisplayNameFor(x => x.UpdatedAt)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayFor(x => x.Title)</td>
+        <td>@Html.DisplayFor(x => x.Details)</td>
+        <td>@Html.DisplayFor(x => x.ExpectedCompletionDate)</td>
+        <td>@Html.DisplayFor(x => x.CreatedAt)</td>
+        <td>@Html.DisplayFor(x => x.UpdatedAt)</td>
+    </tr>
+</table>
+
+<div class="form-row">
+    <div class="col-md-12">        
+        @Html.ActionLink(" ", "Index", "Projects", null, new { @class = "btn btn-danger fas fa-undo-alt" })
+    </div>
+</div>
+
+
+
