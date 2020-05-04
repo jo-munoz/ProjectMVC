@@ -1,0 +1,81 @@
+﻿<div id="divErrors" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none">    
+    <strong>
+        <span id="errors"></span>
+    </strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div id='calendar' class="mt-2"></div>
+
+<script>
+
+    var projectId = @ViewBag.Project.Id;
+
+    //jQuery
+    $(function () {
+        GetTasksCalendar(projectId);
+    });
+
+    //ctrl + k + s
+    function GetTasksCalendar(projectId) {
+
+        $.get('/Tasks/GetTasksCalendar?projectId=' + projectId)
+            .done(function (data) {
+                var isSuccessful = data.IsSuccessful;
+
+                if (isSuccessful) {
+                    var events = [];
+
+                    $.each(data.Data, function (idx, Task) {
+                        events.push({
+                            'id': Task.Id,
+                            'title': Task.Title,
+                            'start': Task.Start,
+                            'end': Task.End,
+                            'allDay': Task.AllDay,
+                            'color': Task.Color,
+                            'textColor': Task.TextColor
+                        });
+                    });
+
+                    var calendarEl = document.getElementById('calendar');
+
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        plugins: ['interaction', 'dayGrid'],
+                        header: {
+                            left: 'prevYear,prev,next,nextYear today',
+                            center: 'title',
+                            right: 'dayGridMonth,dayGridWeek,dayGridDay'
+                        },
+                        navLinks: true,
+                        eventLimit: true, // allow "more" link when too many events
+                        eventClick: function (eventObj) {
+
+                        },
+                        events: events
+                    });
+
+                    calendar.render();
+                }
+                else {
+                    var errors = data.Errors;
+                    displayValidationErrors(errors);
+                }
+            });
+    }
+
+    function displayValidationErrors(errors) {
+        var $ul = $('<ul>');
+        $ul.empty();
+
+        $.each(errors, function (idx, errorMessage) {
+            $ul.append('<li>' + errorMessage + '</li>');
+        });
+
+        $('#errors').html($ul);
+        $('#divErrors').show();
+    }
+
+</script>

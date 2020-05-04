@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ProjectMVC.Controllers
@@ -85,6 +87,52 @@ namespace ProjectMVC.Controllers
 
 
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Calendar(int? projectId)
+        {
+            Logica.BL.Projects projects = new Logica.BL.Projects();
+            var project = projects.GetProjects(projectId, null).FirstOrDefault();
+
+            ViewBag.Project = project;
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult GetTasksCalendar(int? projectId)
+        {
+            try
+            {
+                Logica.BL.Tasks tasks = new Logica.BL.Tasks();
+                var result = tasks.GetTasks(projectId, null);
+
+                var listTasksCalendarViewModel = result.Select(x => new Logica.Models.ViewModels.TasksGetTasksCalendarViewModel
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Start = x.ExpirationDate.Value.AddDays(Convert.ToDouble(-x.RemainingWork)).ToString("yyyy-MM-dd HH:mm:ss"),
+                    End = x.ExpirationDate.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                    AllDay = false,
+                    Color = "#ffff00",
+                    TextColor = "#000000"
+                }).ToList();
+
+                return Json(new
+                {
+                    Data = listTasksCalendarViewModel,
+                    IsSuccessful = true
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new Logica.Models.ViewModels.ResponseViewModel
+                {                    
+                    IsSuccessful = false,
+                    Errors = new List<string> { ex.Message}
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }
