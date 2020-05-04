@@ -3,30 +3,37 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details Project</h2>
+<h2 class="mt-2">
+    <a class="btn btn-danger" style="float:right;color:white" href="@Url.Action("Index","Projects")">
+        <i class="fas fa-chevron-circle-left" style="margin-right:10px"></i>Back
+    </a>
+    Details Project
+</h2>
+<hr />
 
 <table class="table table-bordered table-info">
-    <tr>
-        <td>@Html.DisplayNameFor(x => x.Title)</td>
-        <td>@Html.DisplayNameFor(x => x.Details)</td>
-        <td>@Html.DisplayNameFor(x => x.ExpectedCompletionDate)</td>
-        <td>@Html.DisplayNameFor(x => x.CreatedAt)</td>
-        <td>@Html.DisplayNameFor(x => x.UpdatedAt)</td>
-    </tr>
-    <tr>
-        <td>@Html.DisplayFor(x => x.Title)</td>
-        <td>@Html.DisplayFor(x => x.Details)</td>
-        <td>@Html.DisplayFor(x => x.ExpectedCompletionDate)</td>
-        <td>@Html.DisplayFor(x => x.CreatedAt)</td>
-        <td>@Html.DisplayFor(x => x.UpdatedAt)</td>
-    </tr>
+    <thead class="text-center">
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.Title)</th>
+            <th>@Html.DisplayNameFor(x => x.Details)</th>
+            <th>@Html.DisplayNameFor(x => x.ExpectedCompletionDate)</th>
+            <th>@Html.DisplayNameFor(x => x.CreatedAt)</th>
+            <th>@Html.DisplayNameFor(x => x.UpdatedAt)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Html.DisplayFor(x => x.Title)</td>
+            <td>@Html.DisplayFor(x => x.Details)</td>
+            <td>@Html.DisplayFor(x => x.ExpectedCompletionDate)</td>
+            <td>@Html.DisplayFor(x => x.CreatedAt)</td>
+            <td>@Html.DisplayFor(x => x.UpdatedAt)</td>
+        </tr>
+    </tbody>
 </table>
 
-<div class="form-row">
-    <div class="col-md-12">        
-        @Html.ActionLink(" ", "Index", "Projects", null, new { @class = "btn btn-danger fas fa-undo-alt" })
-    </div>
-</div>
-
-
-
+@*<div class="form-row">
+        <div class="col-md-12">
+            @Html.ActionLink(" ", "Index", "Projects", null, new { @class = "btn btn-danger fas fa-undo-alt" })
+        </div>
+    </div>*@

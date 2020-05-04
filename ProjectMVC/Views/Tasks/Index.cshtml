@@ -3,8 +3,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Tasks</h2>
-@*<h6>Project: @ViewBag.Project.Title</h6>*@
+<h2 class="mt-2">
+    <a class="btn btn-primary" title="Nuevo Registro" style="float:right;color:white" href="@Url.Action("Create","Tasks", new { projectId = ViewBag.Project.Id })">
+        <i class="fas fa-plus-circle" style="margin-right:10px"></i>Add
+    </a>
+    Tasks
+</h2>
+<hr />
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -13,35 +18,37 @@
     </ol>
 </nav>
 
-@Html.ActionLink(" ", "Create", "Tasks", new { projectId = ViewBag.Project.Id }, new { @class = "btn btn-primary fas fa-plus-circle" })
-
+@*@Html.ActionLink(" ", "Create", "Tasks", new { projectId = ViewBag.Project.Id }, new { @class = "btn btn-primary fas fa-plus-circle" })*@
 @*@Html.ActionLink(" ", "Index", "Projects", null, new { @class = "btn btn-danger fas fa-undo-alt" })*@
 
 <table class="table table-bordered">
-    <tr>
-        <td>@Html.DisplayNameFor(x => x.Title)</td>
-        <td>@Html.DisplayNameFor(x => x.Details)</td>
-        <td>@Html.DisplayNameFor(x => x.ExpirationDate)</td>
-        <td>@Html.DisplayNameFor(x => x.IsCompleted)</td>
-        <td>@Html.DisplayNameFor(x => x.Effort)</td>
-        <td>@Html.DisplayNameFor(x => x.RemainingWork)</td>
-        <td>@Html.DisplayNameFor(x => x.State)</td>
-        <td>@Html.DisplayNameFor(x => x.Activity)</td>
-        <td>@Html.DisplayNameFor(x => x.Priority)</td>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <thead class="text-center">
         <tr>
-            <td>@Html.DisplayFor(model => item.Title)</td>
-            <td>@Html.DisplayFor(model => item.Details)</td>
-            <td>@Html.DisplayFor(model => item.ExpirationDate)</td>
-            <td>@Html.DisplayFor(model => item.IsCompleted)</td>
-            <td>@Html.DisplayFor(model => item.Effort)</td>
-            <td>@Html.DisplayFor(model => item.RemainingWork)</td>
-            <td>@Html.DisplayFor(model => item.State)</td>
-            <td>@Html.DisplayFor(model => item.Activity)</td>
-            <td>@Html.DisplayFor(model => item.Priority)</td>
+            <th>@Html.DisplayNameFor(x => x.Title)</th>
+            <th>@Html.DisplayNameFor(x => x.Details)</th>
+            <th>@Html.DisplayNameFor(x => x.ExpirationDate)</th>
+            <th>@Html.DisplayNameFor(x => x.IsCompleted)</th>
+            <th>@Html.DisplayNameFor(x => x.Effort)</th>
+            <th>@Html.DisplayNameFor(x => x.RemainingWork)</th>
+            <th>@Html.DisplayNameFor(x => x.State)</th>
+            <th>@Html.DisplayNameFor(x => x.Activity)</th>
+            <th>@Html.DisplayNameFor(x => x.Priority)</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => item.Title)</td>
+                <td>@Html.DisplayFor(model => item.Details)</td>
+                <td>@Html.DisplayFor(model => item.ExpirationDate)</td>
+                <td>@Html.DisplayFor(model => item.IsCompleted)</td>
+                <td>@Html.DisplayFor(model => item.Effort)</td>
+                <td>@Html.DisplayFor(model => item.RemainingWork)</td>
+                <td>@Html.DisplayFor(model => item.State)</td>
+                <td>@Html.DisplayFor(model => item.Activity)</td>
+                <td>@Html.DisplayFor(model => item.Priority)</td>
+            </tr>
+        }
+    </tbody>
 </table>

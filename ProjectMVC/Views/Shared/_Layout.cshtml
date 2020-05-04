@@ -43,6 +43,10 @@
 
                     if (User.IsInRole("Admin"))
                     {
+                        @Html.ActionLink("Activities", "Index", "Activities", null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+                        @Html.ActionLink("Priorities", "Index", "Priorities", null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+                        @Html.ActionLink("States", "Index", "States", null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+
                         @Html.ActionLink("RolesAdmin", "Index", "RolesAdmin", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
                         @Html.ActionLink("UsersAdmin", "Index", "UsersAdmin", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
                     }
@@ -72,7 +76,9 @@
                 </div>
             </nav>
             <div class="container-fluid">
-                @RenderBody()
+                <div class="col-md-12">
+                    @RenderBody()
+                </div>
             </div>
         </div>
         <!-- ============================================================== -->

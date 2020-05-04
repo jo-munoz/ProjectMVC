@@ -3,7 +3,13 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create Project</h2>
+<h2 class="mt-2">
+    <a class="btn btn-danger" style="float:right;color:white" href="@Url.Action("Index","Projects")">
+        <i class="fas fa-chevron-circle-left" style="margin-right:10px"></i>Back
+    </a>
+    Create Project
+</h2>
+<hr />
 
 <form action="/Projects/Create" method="post">
 
@@ -31,8 +37,12 @@
     <div class="form-row">
         <div class="col-md-12">
             <br />
-            <button type="submit" value="" class="btn-primary"><i class="fas fa-save"></i></button>
-            @Html.ActionLink(" ", "Index", "Projects", null, new { @class = "btn btn-danger fas fa-undo-alt" })
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-save" style="margin-right:10px"></i> Save
+            </button>
+            @*<input type="submit" value="Save" class="btn btn-success" />*@
+            @*<button type="submit" value="" class="btn-primary"><i class="fas fa-save"></i></button>*@
+            @*@Html.ActionLink(" ", "Index", "Projects", null, new { @class = "btn btn-danger fas fa-undo-alt" })*@
         </div>
     </div>
 

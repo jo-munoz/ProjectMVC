@@ -174,10 +174,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PrioritiesController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\StatesController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -311,6 +314,21 @@
     <Content Include="Views\Projects\Details.cshtml" />
     <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="Views\Tasks\Create.cshtml" />
+    <Content Include="Views\Activities\Create.cshtml" />
+    <Content Include="Views\Activities\Delete.cshtml" />
+    <Content Include="Views\Activities\Details.cshtml" />
+    <Content Include="Views\Activities\Edit.cshtml" />
+    <Content Include="Views\Activities\Index.cshtml" />
+    <Content Include="Views\Priorities\Create.cshtml" />
+    <Content Include="Views\Priorities\Delete.cshtml" />
+    <Content Include="Views\Priorities\Details.cshtml" />
+    <Content Include="Views\Priorities\Edit.cshtml" />
+    <Content Include="Views\Priorities\Index.cshtml" />
+    <Content Include="Views\States\Create.cshtml" />
+    <Content Include="Views\States\Delete.cshtml" />
+    <Content Include="Views\States\Details.cshtml" />
+    <Content Include="Views\States\Edit.cshtml" />
+    <Content Include="Views\States\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

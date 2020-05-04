@@ -30,7 +30,7 @@ namespace ProjectMVC.Logica.BL
                                  IsCompleted = _tasks.IsCompleted,
                                  Effort = _tasks.Effort,
                                  RemainingWork = _tasks.RemainingWork,
-                                 ProjectId = _tasks.Id,
+                                 ProjectId = _tasks.ProjectId,
                                  ActivityId = _tasks.ActivityId,
                                  Activities = new Models.DB.Activities
                                  {
