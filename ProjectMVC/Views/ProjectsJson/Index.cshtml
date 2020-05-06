@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="mt-2">
+    <a class="btn btn-primary" title="Nuevo Registro" style="float:right;color:white" href="@Url.Action("Create","ProjectsJson")">
+        <i class="fas fa-plus-circle" style="margin-right:10px"></i>Add
+    </a>
+    ProjectsJson
+</h2>
+<hr />
+
+<div id="divErrors" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none">
+    <strong>
+        <span id="errors"></span>
+    </strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<table id="gridProjects" class="table table-bordered table-hover">
+    <thead class="text-center">
+        <tr>
+            <th>Title</th>
+            <th>Details</th>
+            <th>Expected Completion Date</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+</table>
+
+<script>
+
+    $(function () {        
+        GetProjects();
+    });    
+
+    function GetProjects() {
+        //GET - /NameController/NameAction/Parameters
+        $.get('/ProjectsJson/GetProjects').done(function (data) {            
+
+            var isSuccessul = data.IsSuccessful;              
+
+            if (isSuccessul) {
+
+                //code here its ok
+                $.each(data.Data, function (idx, project) {
+
+                    //display grid
+                    var $grid = $('#gridProjects');
+
+                    //Create row
+                    var $tr = $('<tr></tr>');
+                    //add colums
+                    $tr.append('<td>' + project.Title + '</td>');
+                    $tr.append('<td>' + project.Details + '</td>');
+                    $tr.append('<td>' + project.ExpectedCompletionDatestring + '</td>');
+                    $tr.append('<td>' + project.CreatedAtstring + '</td>');
+                    $tr.append('<td>' + project.UpdatedAtstring + '</td>');
+
+                    //create colum
+                    var $td = $('<td></td>');
+                    $td.append('<a class="btn btn-primary btn-sm fas fa-eye" href="/ProjectsJson/Details/' + project.Id + '" />')
+                    $td.append('<a class="btn btn-primary btn-sm mx-2 fas fa-edit" href="/ProjectsJson/Edit/' + project.Id + '" />')                    
+
+                    $tr.append($td);
+
+                    //add grid
+                    $grid.append($tr);
+                });
+            }
+            else {
+                var errors = data.Errors
+                displayValidationErrors(errors);
+            }
+        });
+    }
+
+</script>

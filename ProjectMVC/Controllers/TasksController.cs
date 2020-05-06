@@ -124,6 +124,7 @@ namespace ProjectMVC.Controllers
                     Data = listTasksCalendarViewModel,
                     IsSuccessful = true
                 }, JsonRequestBehavior.AllowGet);
+
             }
             catch (Exception ex)
             {

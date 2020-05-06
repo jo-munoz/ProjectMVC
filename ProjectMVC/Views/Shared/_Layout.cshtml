@@ -33,7 +33,11 @@
     <script src='~/Libs/fullcalendar-4.0.2/packages/daygrid/main.js'></script>
 
     <!-- Jquery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    @*<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>*@
+    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>    
+
+    <!-- Utils -->
+    <script src="~/Scripts/Utils.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="d-flex" id="wrapper">
@@ -50,6 +54,7 @@
                     @*<a href="#" class="list-group-item list-group-item-action bg-light">Projects</a>*@
 
                     @Html.ActionLink("Projects", "Index", "Projects", null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+                    @Html.ActionLink("Projects Json", "Index", "ProjectsJson", null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
 
                     if (User.IsInRole("Admin"))
                     {

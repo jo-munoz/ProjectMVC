@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="mt-2">
+    <a class="btn btn-danger" style="float:right;color:white" href="@Url.Action("Index","ProjectsJson")">
+        <i class="fas fa-chevron-circle-left" style="margin-right:10px"></i>Back
+    </a>
+    Details ProjectJson
+</h2>
+<hr />
+
+<div id="divErrors" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none">
+    <strong>
+        <span id="errors"></span>
+    </strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<table class="table table-bordered table-info">
+    <thead class="text-center">
+        <tr>
+            <th>Title</th>
+            <th>Details</th>
+            <th>Expected Completion Date</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><label id="Title"></label></td>
+            <td><label id="Details"></label></td>
+            <td><label id="ExpectedCompletionDate"></label></td>
+            <td><label id="CreatedAt"></label></td>
+            <td><label id="UpdatedAt"></label></td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+
+    var projectId = @ViewBag.ProjectId;
+
+    $(function () {
+        GetProject(projectId);
+    });
+
+    function GetProject(projectId) {
+        //GET - /NameController/NameAction/Parameters
+        $.get('/ProjectsJson/GetProject?id=' + projectId).done(function (data) {
+
+            var isSuccessul = data.IsSuccessful;
+
+            if (isSuccessul) {
+
+                //code here its ok
+                $('#Title').html(data.Data.Title);
+                $('#Details').html(data.Data.Details);
+                $('#ExpectedCompletionDate').html(data.Data.ExpectedCompletionDatestring);
+                $('#CreatedAt').html(data.Data.CreatedAtstring);
+                $('#UpdatedAt').html(data.Data.UpdatedAtstring);
+            }
+            else {
+                var errors = data.Errors
+                displayValidationErrors(errors);
+            }
+        });
+    }
+
+</script>

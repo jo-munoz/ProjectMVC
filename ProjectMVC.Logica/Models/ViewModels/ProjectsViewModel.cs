@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProjectMVC.Logica.Models.ViewModels
 {
+    #region ProjectsIndexViewModel
     public class ProjectsIndexViewModel
     {
         [Display(Name = "Id")]
@@ -17,13 +18,24 @@ namespace ProjectMVC.Logica.Models.ViewModels
         [Display(Name = "Expected Completion Date")]
         public DateTime? ExpectedCompletionDate { get; set; }
 
-        [Display(Name = "CreatedAt")]
+        [Display(Name = "Expected Completion Date")]
+        public string ExpectedCompletionDatestring { get; set; }
+
+        [Display(Name = "Created At")]
         public DateTime? CreatedAt { get; set; }
 
-        [Display(Name = "UpdatedAt")]
-        public DateTime? UpdatedAt { get; set; }
-    }
+        [Display(Name = "Created At")]
+        public string CreatedAtstring { get; set; }
 
+        [Display(Name = "Updated At")]
+        public DateTime? UpdatedAt { get; set; }
+
+        [Display(Name = "Updated At")]
+        public string UpdatedAtstring { get; set; }
+    }
+    #endregion
+
+    #region ProjectsDetailsViewModel
     public class ProjectsDetailsViewModel
     {
         [Display(Name = "Title")]
@@ -35,10 +47,20 @@ namespace ProjectMVC.Logica.Models.ViewModels
         [Display(Name = "Expected Completion Date")]
         public DateTime? ExpectedCompletionDate { get; set; }
 
+        [Display(Name = "Expected Completion Date")]
+        public string ExpectedCompletionDatestring { get; set; }
+
         [Display(Name = "CreatedAt")]
         public DateTime? CreatedAt { get; set; }
 
+        [Display(Name = "CreatedAt")]
+        public string CreatedAtstring { get; set; }
+
         [Display(Name = "UpdatedAt")]
         public DateTime? UpdatedAt { get; set; }
-    }
+
+        [Display(Name = "UpdatedAt")]
+        public string UpdatedAtstring { get; set; }
+    } 
+    #endregion
 }

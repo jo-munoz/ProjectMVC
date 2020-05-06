@@ -1,0 +1,82 @@
+﻿@model ProjectMVC.Logica.Models.BindingModels.ProjectsCreateBindingModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 class="mt-2">
+    <a class="btn btn-danger" style="float:right;color:white" href="@Url.Action("Index","ProjectsJson")">
+        <i class="fas fa-chevron-circle-left" style="margin-right:10px"></i>Back
+    </a>
+    Create ProjectsJson
+</h2>
+<hr />
+
+<div id="divErrors" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none">
+    <strong>
+        <span id="errors"></span>
+    </strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="form-row mb-2">
+    <div class="col-md-12">
+        @Html.LabelFor(x => x.Title)
+        @Html.EditorFor(x => x.Title, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+    </div>
+</div>
+<div class="form-row mb-2">
+    <div class="col-md-12">
+        @Html.LabelFor(x => x.Details)
+        @Html.EditorFor(x => x.Details, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+    </div>
+</div>
+<div class="form-row mb-2">
+    <div class="col-md-12">
+        @Html.LabelFor(x => x.ExpectedCompletionDate)
+        @Html.EditorFor(x => x.ExpectedCompletionDate, new { htmlAttributes = new { @class = "form-control form-control-sm", @type = "date" } })
+    </div>
+</div>
+<div class="form-row">
+    <div class="col-md-12">
+        <br />
+        <button id="btnCreateProject" class="btn btn-success">
+            <i class="fas fa-save" style="margin-right:10px"></i> Save
+        </button>
+    </div>
+</div>
+
+<script>
+
+    $(function () {
+        $('#btnCreateProject').click(function () {
+            CreateProject();
+        });
+    });
+
+    function CreateProject() {
+
+        //JSON
+        var projectsCreateBindingModel = {
+            'Title': $('#Title').val(),
+            'Details': $('#Details').val(),
+            'ExpectedCompletionDate': $('#ExpectedCompletionDate').val(),
+        };
+
+        //POST - /NameController/NameAction/Parameters
+        $.post('/ProjectsJson/Create', projectsCreateBindingModel).done(function (data) {
+
+            var isSuccessul = data.IsSuccessful;
+
+            if (isSuccessul) {
+                window.location.href = '/ProjectsJson/Index';
+            } else {
+                var errors = data.Errors
+                displayValidationErrors(errors);
+            }
+
+        });
+    }
+
+</script>
