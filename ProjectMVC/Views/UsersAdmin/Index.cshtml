@@ -4,33 +4,43 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="mt-2">
+    <a class="btn btn-primary" title="New User" style="float:right;color:white" href="@Url.Action("Create","UsersAdmin")">
+        <i class="fas fa-plus-circle" style="margin-right:10px"></i>Add
+    </a>
+    Users
+</h2>
+<hr />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-bordered table-hover">
+    <thead class="text-center">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
 
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                <td class="text-center" style="width:130px">
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    <a href="@Url.Action("Details","UsersAdmin", new { id = item.Id })" title="View Details the registry"><i class="fas fa-eye" style="font-size:20px;color:green"></i></a>
+                    <a href="@Url.Action("Edit","UsersAdmin", new { id = item.Id })" title="Edit registry" class="mx-2"><i class="fas fa-edit" style="font-size:20px"></i></a>
+                    <a href="@Url.Action("Delete","UsersAdmin", new { id = item.Id })" title="Delete registry"><i class="fas fa-trash" style="font-size:20px;color:red"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

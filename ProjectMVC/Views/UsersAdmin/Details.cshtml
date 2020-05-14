@@ -4,11 +4,15 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details.</h2>
+<h2 class="mt-2">
+    <a class="btn btn-danger" style="float:right;color:white" href="@Url.Action("Index","UsersAdmin")">
+        <i class="fas fa-chevron-circle-left" style="margin-right:10px"></i>Back
+    </a>
+    Details User
+</h2>
+<hr />
 
 <div>
-    <h4>User</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.UserName)
@@ -37,8 +41,11 @@
     }
 </table>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-success" style="color:white" href="@Url.Action("Edit","UsersAdmin", new { id = Model.Id })">
+        <i class="fas fa-edit" style="margin-right:10px"></i>Edit
+    </a>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>
 
 
